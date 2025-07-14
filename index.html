@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GND Coffee Roaster</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        .event-section {
+            margin-top: 2.5em;
+            background: #e5e7eb;
+            border-radius: 10px;
+            padding: 1.5em 1em;
+            box-shadow: 0 1px 6px rgba(0,0,0,0.07);
+        }
+        .event-section h2 {
+            font-family: 'Playfair Display', serif;
+            margin-top: 0;
+        }
+        .event-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5em;
+            margin-top: 1em;
+        }
+        .event-item {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+            padding: 1em;
+            min-width: 220px;
+            flex: 1;
+        }
+        .event-item h3 {
+            margin: 0 0 0.3em 0;
+            font-size: 1.1em;
+            font-family: 'Playfair Display', serif;
+        }
+        .event-item p {
+            margin: 0.2em 0 0 0;
+            color: #555;
+            font-size: 0.97em;
+        }
+        .beranda-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2em;
+            margin-top: 2em;
+        }
+        .blog-list {
+            flex: 2;
+            min-width: 280px;
+        }
+        .blog-post {
+            background: #f3f4f6;
+            border-radius: 8px;
+            padding: 1em 1.5em;
+            margin-bottom: 1.5em;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+        }
+        .blog-post h3 {
+            margin-top: 0;
+            font-family: 'Playfair Display', serif;
+        }
+        .blog-post p {
+            color: #555;
+        }
+        .ulasan-foto {
+            flex: 1;
+            min-width: 220px;
+        }
+        .foto-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.7em;
+        }
+        .foto-grid img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.09);
+            object-fit: cover;
+            aspect-ratio: 1/1;
+        }
+        body { font-family: Montserrat, Arial, sans-serif; margin: 0; padding: 0; background: #f7f7f7; }
+        header {
+            background: linear-gradient(90deg, #ece9e6 0%, #ffffff 100%);
+            color: #222;
+            text-align: center;
+            padding: 2em 0 1em 0;
+            font-family: 'Montserrat', Arial, sans-serif;
+            letter-spacing: 2px;
+            box-shadow: 0 2px 16px rgba(176,179,184,0.12);
+            border-bottom: 1px solid #e5e7eb;
+        }
+        header h1 {
+            font-size: 2.5em;
+            margin: 0;
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            text-shadow: 0 2px 8px rgba(176,179,184,0.2);
+        }
+        nav { background: #333; color: #fff; padding: 1em 0; }
+        nav ul { list-style: none; display: flex; justify-content: center; margin: 0; padding: 0; }
+        nav ul li { margin: 0 1em; }
+        nav ul li a { color: #fff; text-decoration: none; font-weight: bold; }
+        nav ul li a.active { border-bottom: 2px solid #fff; }
+        .container { max-width: 900px; margin: 2em auto; background: #fff; padding: 2em; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        .produk-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.2em;
+            margin-bottom: 2em;
+        }
+        .produk-item {
+            background: #f3f4f6;
+            border-radius: 8px;
+            padding: 1em;
+            text-align: center;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+            font-family: Montserrat, Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 270px;
+            max-width: 220px;
+            margin: 0 auto;
+        }
+        .produk-item img {
+            width: 180px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 6px;
+            margin-bottom: 0.7em;
+        }
+        .produk-item h3 {
+            font-size: 1.1em;
+            margin: 0.5em 0 0.2em 0;
+            font-weight: 700;
+        }
+        .produk-item p {
+            font-size: 0.95em;
+            color: #555;
+            margin: 0.2em 0 0 0;
+        }
+        footer {
+    background: #111;
+    color: #fff;
+    text-align: center;
+    padding: 1.5em 0 1em 0;
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-size: 1.05em;
+    letter-spacing: 1px;
+    box-shadow: 0 -2px 8px rgba(0,0,0,0.08);
+    margin-top: 3em;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div style="display:flex;align-items:center;justify-content:center;gap:1.2em;padding:0.5em 0;">
+            <img src="logo.jpg" alt="Logo GND" style="height:56px;width:56px;filter:drop-shadow(0 2px 8px #b0b3b8);background:#fff;border-radius:50%;padding:8px;object-fit:contain;" />
+            <div>
+                <h1 style="margin:0;font-size:2.2em;font-family:'Montserrat',sans-serif;font-weight:900;letter-spacing:2px;color:#222;">GRIND AND NOISE</h1>
+                <span style="font-size:1.1em;font-family:'Playfair Display',serif;color:#444;letter-spacing:1px;">COFFEE ROASTER</span>
+            </div>
+        </div>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="#" id="nav-beranda" class="active">Beranda</a></li>
+            <li><a href="#" id="nav-produk">Produk</a></li>
+            <li><a href="#" id="nav-kontak">Kontak</a></li>
+            <li><a href="#" id="nav-komunitas">Komunitas</a></li>
+        </ul>
+    </nav>
+    <div class="container" id="content">
+        <!-- Konten akan diubah dengan JavaScript -->
+    </div>
+    <footer>
+        <span>&copy; 2025 <strong>GND COFFEE ROASTER™</strong>. All rights reserved.</span>
+        <div style="font-size:0.92em;color:#ccc;margin-top:0.5em;letter-spacing:0.5px;">Jl. Kopi No. 10, Jakarta &mdash; info@gndcoffeeroaster.com &mdash; WhatsApp: 0812-3456-7890</div>
+    </footer>
+    <script>
+        const content = document.getElementById('content');
+        const navLinks = document.querySelectorAll('nav ul li a');
+
+        function addProdukClickHandler() {
+            const produkItems = document.querySelectorAll('.produk-item');
+            produkItems.forEach(item => {
+                item.onclick = function() {
+                    const idx = this.getAttribute('data-produk');
+                    showPage('produkDetail', Number(idx));
+                };
+            });
+        }
+
+        const produkList = [
+            { nama: 'Arabica Premium', kategori: 'Single Origin', gambar: 'https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=400&q=80', deskripsi: 'Kopi Arabika premium dengan cita rasa khas dan aroma kuat.' },
+            { nama: 'Robusta Classic', kategori: 'Single Origin', gambar: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80', deskripsi: 'Kopi robusta klasik, cocok untuk penikmat kopi dengan body tebal.' },
+            { nama: 'Java Estate', kategori: 'Single Origin', gambar: 'https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80', deskripsi: 'Kopi Java Estate, cita rasa earthy dan sedikit spicy.' },
+            { nama: 'Sumatra Mandheling', kategori: 'Single Origin', gambar: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80', deskripsi: 'Mandheling Sumatra, kopi dengan body penuh dan aftertaste coklat.' },
+            { nama: 'Bali Kintamani', kategori: 'Single Origin', gambar: 'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=400&q=80', deskripsi: 'Kopi Bali Kintamani, rasa citrus dan floral.' },
+            { nama: 'Blend Signature', kategori: 'Houseblend', gambar: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80', deskripsi: 'Houseblend signature, kombinasi arabika dan robusta.' },
+            { nama: 'Espresso Blend', kategori: 'Houseblend', gambar: 'https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80', deskripsi: 'Espresso blend, cocok untuk espresso dan cappuccino.' },
+            { nama: 'Morning Blend', kategori: 'Houseblend', gambar: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80', deskripsi: 'Morning blend, kopi ringan untuk pagi hari.' },
+            { nama: 'Classic Blend', kategori: 'Houseblend', gambar: 'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=400&q=80', deskripsi: 'Classic blend, rasa seimbang dan mudah dinikmati.' },
+            { nama: 'Dark Roast Blend', kategori: 'Houseblend', gambar: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80', deskripsi: 'Dark roast blend, kopi dengan rasa pahit dan aroma smoky.' },
+            { nama: 'French Press', kategori: 'Alat Seduh', gambar: 'https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=400&q=80', deskripsi: 'French Press, alat seduh klasik untuk kopi manual.' },
+            { nama: 'V60 Dripper', kategori: 'Alat Seduh', gambar: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80', deskripsi: 'V60 Dripper, alat seduh pour over.' },
+            { nama: 'Grinder Manual', kategori: 'Alat Seduh', gambar: 'https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80', deskripsi: 'Grinder manual, penggiling kopi untuk hasil segar.' },
+            { nama: 'Scale Digital', kategori: 'Alat Seduh', gambar: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80', deskripsi: 'Timbangan digital untuk presisi seduh kopi.' },
+            { nama: 'Aeropress', kategori: 'Alat Seduh', gambar: 'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=400&q=80', deskripsi: 'Aeropress, alat seduh praktis dan cepat.' }
+        ];
+
+        const pages = {
+            beranda: `
+                <h1>Selamat Datang di GND Coffee Roaster</h1>
+                <p>Kopi terbaik, dipanggang dengan cinta untuk Anda. Temukan pengalaman kopi yang berbeda di GND Coffee Roaster.</p>
+                <div class="beranda-section">
+                    <div class="blog-list">
+                        <h2>Blog & Ulasan</h2>
+                        <div class="blog-post blog-link" style="cursor:pointer" id="blog-arabika">
+                            <h3>Rahasia dibalik Arabika</h3>
+                            <p>Kenali karakter unik dari kopi single origin Indonesia dan cara terbaik menikmatinya.</p>
+                        </div>
+                        <div class="blog-post blog-link" style="cursor:pointer" id="blog-tips">
+                            <h3>Tips Menyeduh Kopi di Rumah</h3>
+                            <p>Simak tips menyeduh kopi nikmat dengan alat sederhana di rumah, cocok untuk pemula.</p>
+                        </div>
+                        <div class="blog-post">
+                            <h3>Ulasan Pelanggan</h3>
+                            <p>“Kopinya fresh banget, pelayanan ramah, dan pengiriman cepat!” – Rina, Jakarta</p>
+                        </div>
+                    </div>
+                    <div class="ulasan-foto">
+                        <h2>Foto Ulasan</h2>
+                        <div class="foto-grid">
+                            <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=400&q=80" alt="Kopi 1">
+                            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80" alt="Kopi 2">
+                            <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80" alt="Kopi 3">
+                            <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80" alt="Kopi 4">
+                        </div>
+                    </div>
+                </div>
+                <div class="event-section">
+                    <h2>Event & Acara Kopi</h2>
+                    <div class="event-list">
+                        <div class="event-item" id="event-workshop" style="cursor:pointer">
+                            <h3>Workshop Latte Art</h3>
+                            <p>20 Juli 2025 - Belajar teknik latte art bersama barista profesional.</p>
+                        </div>
+                        <div class="event-item" id="event-cupping" style="cursor:pointer">
+                            <h3>Cupping Session</h3>
+                            <p>27 Juli 2025 - Cicipi berbagai kopi single origin dan houseblend.</p>
+                        </div>
+                        <div class="event-item" id="event-komunitas" style="cursor:pointer">
+                            <h3>Ngopi Bareng Komunitas</h3>
+                            <p>Setiap Sabtu - Kopdar komunitas pecinta kopi di GND Coffee Roaster.</p>
+                        </div>
+                    </div>
+                </div>
+            `,
+            produk: `
+                <h1>Produk Kami</h1>
+                <div class="produk-grid">
+                    ${produkList.map((p,i) => `
+                    <div class="produk-item" data-produk="${i}">
+                        <img src="${p.gambar}" alt="${p.nama}" />
+                        <h3>${p.nama}</h3>
+                        <p>${p.kategori}</p>
+                    </div>
+                    `).join('')}
+                </div>
+            `,
+            kontak: `
+                <h1>Kontak & Registrasi</h1>
+                <p>Email: info@gndcoffeeroaster.com</p>
+                <p>WhatsApp: 0812-3456-7890</p>
+                <p>Alamat: Jl. Kopi No. 10, Jakarta</p>
+                <hr style="margin:2em 0;">
+                <h2>Buat Akun</h2>
+                <form id="form-registrasi" style="max-width:400px;margin:auto;text-align:left;">
+                    <label for="nama" style="display:block;margin-bottom:0.5em;font-weight:bold;">Nama Lengkap</label>
+                    <input type="text" id="nama" name="nama" required style="width:100%;padding:0.7em;margin-bottom:1em;border-radius:6px;border:1px solid #ccc;">
+                    <label for="email" style="display:block;margin-bottom:0.5em;font-weight:bold;">Email</label>
+                    <input type="email" id="email" name="email" required style="width:100%;padding:0.7em;margin-bottom:1em;border-radius:6px;border:1px solid #ccc;">
+                    <label for="password" style="display:block;margin-bottom:0.5em;font-weight:bold;">Password</label>
+                    <input type="password" id="password" name="password" required style="width:100%;padding:0.7em;margin-bottom:1em;border-radius:6px;border:1px solid #ccc;">
+                    <button type="submit" style="background:#333;color:#fff;padding:0.8em 2em;border:none;border-radius:6px;font-weight:bold;cursor:pointer;">Daftar</button>
+                </form>
+                <div id="registrasi-success" style="display:none;margin-top:1.5em;color:green;font-weight:bold;text-align:center;">Registrasi berhasil! Terima kasih telah mendaftar.</div>
+            `,
+            komunitas: `
+                <h1>Komunitas</h1>
+                <p>Bergabunglah dengan komunitas pecinta kopi kami di media sosial dan acara kopi bulanan.</p>
+                <ul>
+                    <li>Instagram: @gndcoffeeroaster</li>
+                    <li>Facebook: GND Coffee Roaster Community</li>
+                </ul>
+            `,
+            blogArabika: `
+                <h1>Rahasia dibalik Arabika</h1>
+                <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=400&q=80" alt="Kopi Arabika" style="max-width:350px;border-radius:10px;margin-bottom:1em;" />
+                <p><strong>Asal Usul Kopi Arabika</strong></p>
+                <p>Kopi Arabika merupakan salah satu varietas kopi paling populer di dunia. Dikenal dengan karakter rasa yang kompleks, aroma floral, dan tingkat keasaman yang lebih tinggi dibanding robusta. Arabika tumbuh di dataran tinggi dengan suhu sejuk, seperti di Sumatra, Jawa, Bali, dan Sulawesi.</p>
+                <p><strong>Keunikan Rasa</strong></p>
+                <p>Setiap daerah menghasilkan profil rasa arabika yang berbeda. Kopi dari Sumatra cenderung earthy dan spicy, sedangkan dari Bali lebih citrus dan floral. Proses pasca panen seperti natural, washed, atau honey juga mempengaruhi cita rasa akhir.</p>
+                <p><strong>Cara Menyeduh Terbaik</strong></p>
+                <p>Untuk menikmati keunikan arabika, gunakan metode seduh manual seperti V60, French Press, atau Aeropress. Gunakan air bersuhu 90-94°C dan rasio kopi-air yang sesuai agar karakter asli arabika tetap terasa.</p>
+                <div style="margin-top:2em;"><button onclick="showPage('beranda')">Kembali ke Beranda</button></div>
+            `,
+            blogTips: `
+                <h1>Tips Menyeduh Kopi di Rumah</h1>
+                <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80" alt="Menyeduh Kopi di Rumah" style="max-width:350px;border-radius:10px;margin-bottom:1em;" />
+                <p><strong>1. Pilih Biji Kopi Berkualitas</strong></p>
+                <p>Gunakan biji kopi segar dan berkualitas untuk hasil seduhan terbaik. Simpan biji kopi di wadah kedap udara agar tetap fresh.</p>
+                <p><strong>2. Gunakan Air Bersih dan Suhu Tepat</strong></p>
+                <p>Air yang digunakan sebaiknya bersih dan bebas bau. Suhu ideal untuk menyeduh kopi adalah 90-94°C agar rasa kopi keluar maksimal tanpa pahit berlebih.</p>
+                <p><strong>3. Rasio Kopi dan Air</strong></p>
+                <p>Gunakan rasio 1:15 (misal 15 gram kopi untuk 225 ml air) sebagai standar, lalu sesuaikan dengan selera.</p>
+                <p><strong>4. Metode Seduh Sederhana</strong></p>
+                <p>Metode French Press, V60, atau Aeropress sangat cocok untuk pemula. Ikuti petunjuk alat dan jangan lupa pre-wet filter jika menggunakan V60.</p>
+                <p><strong>5. Nikmati Kopi Segera</strong></p>
+                <p>Kopi terbaik dinikmati segera setelah diseduh agar aroma dan rasa tetap optimal.</p>
+                <div style="margin-top:2em;"><button onclick="showPage('beranda')">Kembali ke Beranda</button></div>
+            `,
+            eventWorkshop: `
+                <h1>Workshop Latte Art</h1>
+                <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=400&q=80" alt="Workshop Latte Art" style="max-width:300px;border-radius:10px;margin-bottom:1em;" />
+                <p><strong>Tanggal:</strong> 20 Juli 2025</p>
+                <p><strong>Deskripsi:</strong> Belajar teknik latte art bersama barista profesional. Cocok untuk pemula dan pecinta kopi yang ingin memperdalam seni latte art.</p>
+                <div style="margin-top:2em;"><button onclick="showPage('beranda')">Kembali ke Beranda</button></div>
+            `,
+            eventCupping: `
+                <h1>Cupping Session</h1>
+                <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80" alt="Cupping Session" style="max-width:300px;border-radius:10px;margin-bottom:1em;" />
+                <p><strong>Tanggal:</strong> 27 Juli 2025</p>
+                <p><strong>Deskripsi:</strong> Cicipi berbagai kopi single origin dan houseblend, pelajari teknik cupping bersama ahli kopi.</p>
+                <div style="margin-top:2em;"><button onclick="showPage('beranda')">Kembali ke Beranda</button></div>
+            `,
+            eventKomunitas: `
+                <h1>Ngopi Bareng Komunitas</h1>
+                <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80" alt="Ngopi Bareng Komunitas" style="max-width:300px;border-radius:10px;margin-bottom:1em;" />
+                <p><strong>Tanggal:</strong> Setiap Sabtu</p>
+                <p><strong>Deskripsi:</strong> Kopdar komunitas pecinta kopi di GND Coffee Roaster. Networking, sharing, dan diskusi seputar kopi.</p>
+                <div style="margin-top:2em;"><button onclick="showPage('beranda')">Kembali ke Beranda</button></div>
+            `,
+            produkDetail: function(idx) {
+                const p = produkList[idx];
+                return `
+                    <h1>${p.nama}</h1>
+                    <img src="${p.gambar}" alt="${p.nama}" style="max-width:300px;border-radius:10px;margin-bottom:1em;" />
+                    <p><strong>Kategori:</strong> ${p.kategori}</p>
+                    <p><strong>Deskripsi:</strong> ${p.deskripsi}</p>
+                    <div style="margin-top:2em;"><button onclick="showPage('produk')">Kembali ke Produk</button></div>
+                `;
+            }
+        };
+
+        function setActive(navId) {
+            navLinks.forEach(link => link.classList.remove('active'));
+            document.getElementById(navId).classList.add('active');
+        }
+
+        function showPage(page, idx) {
+            if(page === 'produkDetail') {
+                content.innerHTML = pages.produkDetail(idx);
+                return;
+            }
+            content.innerHTML = typeof pages[page] === 'function' ? pages[page](idx) : pages[page];
+            if(page === 'produk') {
+                addProdukClickHandler();
+            }
+            // Tambah handler blog
+            if(page === 'beranda') {
+                const arabika = document.getElementById('blog-arabika');
+                if(arabika) arabika.onclick = function() { showPage('blogArabika'); };
+                const tips = document.getElementById('blog-tips');
+                if(tips) tips.onclick = function() { showPage('blogTips'); };
+                // Tambah handler event
+                const workshop = document.getElementById('event-workshop');
+                if(workshop) workshop.onclick = function() { showPage('eventWorkshop'); };
+                const cupping = document.getElementById('event-cupping');
+                if(cupping) cupping.onclick = function() { showPage('eventCupping'); };
+                const komunitas = document.getElementById('event-komunitas');
+                if(komunitas) komunitas.onclick = function() { showPage('eventKomunitas'); };
+            }
+            // Handler form registrasi
+            if(page === 'kontak') {
+                const form = document.getElementById('form-registrasi');
+                if(form) {
+                    form.onsubmit = function(e) {
+                        e.preventDefault();
+                        document.getElementById('registrasi-success').style.display = 'block';
+                        form.reset();
+                    };
+                }
+            }
+        }
+
+        document.getElementById('nav-beranda').addEventListener('click', function(e) {
+            e.preventDefault();
+            setActive('nav-beranda');
+            showPage('beranda');
+        });
+        document.getElementById('nav-produk').addEventListener('click', function(e) {
+            e.preventDefault();
+            setActive('nav-produk');
+            showPage('produk');
+        });
+        document.getElementById('nav-kontak').addEventListener('click', function(e) {
+            e.preventDefault();
+            setActive('nav-kontak');
+            showPage('kontak');
+        });
+        document.getElementById('nav-komunitas').addEventListener('click', function(e) {
+            e.preventDefault();
+            setActive('nav-komunitas');
+            showPage('komunitas');
+        });
+
+        // Tampilkan Beranda saat pertama kali dibuka
+        showPage('beranda');
+    </script>
+</body>
+</html>
